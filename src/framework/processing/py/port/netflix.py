@@ -112,11 +112,10 @@ def ratings_to_df(netflix_zip: str, selected_user: str)  -> pd.DataFrame:
     Only keep the selected user
     """
 
-    columns_to_keep = ["Title Name", "Thumbs Value", "Device Model", "Event Utc Ts"]
+    columns_to_keep = ["Title Name", "Thumbs Value", "Event Utc Ts"]
     columns_to_rename =  {
         "Title Name": "Titel",
         "Event Utc Ts": "Datum en tijd",
-        "Device Model": "Gebruikte apparaat",
         "Thumbs Value": "Aantal duimpjes omhoog"
     }
 
