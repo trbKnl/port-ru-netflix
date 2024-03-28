@@ -275,23 +275,57 @@ def extract_netflix(netflix_zip: str, selected_user: str) -> list[props.PropsUIP
 
     df = netflix.ratings_to_df(netflix_zip, selected_user)
     if not df.empty:
+        wordcloud = {
+            "title": {"en": "Titles rated by thumbs value", "nl": "Gekeken titles, grootte is gebasseerd op het aantal duimpjes omhoog"},
+            "type": "wordcloud",
+            "textColumn": "Titel",
+            "valueColumn": "Aantal duimpjes omhoog",
+        }
         table_title = props.Translatable({"en": "Your ratings on Netflix", "nl": "Uw beoordelingen op Netflix"})
         table_description = props.Translatable({
             "en": "Click 'Show Table' to view these ratings per row.", 
             "nl": "Klik op ‘Tabel tonen’ om deze beoordelingen per rij te bekijken."
         })
-        table = props.PropsUIPromptConsentFormTable("netflix_rating", table_title, df, table_description)
+        table = props.PropsUIPromptConsentFormTable("netflix_rating", table_title, df, table_description, [wordcloud])
         tables_to_render.append(table)
 
 
     df = netflix.viewing_activity_to_df(netflix_zip, selected_user)
     if not df.empty:
+
+        hours_logged_in = {
+            "title": {"en": "Total hours watched per month of the year", "nl": "Totaal aantal uren gekeken per maand van het jaar"},
+            "type": "area",
+            "group": {
+                "column": "Start tijd",
+                "dateFormat": "month"
+            },
+            "values": [{
+                "column": "Aantal uur gekeken",
+                "aggregate": "sum",
+            }]
+        }
+
+        at_what_time = {
+            "title": {"en": "Total hours watch by hour of the day", "nl": "Totaal aantal uur gekeken op uur van de dag"},
+            "type": "bar",
+            "group": {
+                "column": "Start tijd",
+                "dateFormat": "hour_cycle"
+            },
+            "values": [{
+                "column": "Aantal uur gekeken",
+                "aggregate": "sum",
+            }]
+        }
+
+
         table_title = props.Translatable({"en": "What you watched", "nl": "Wanneer kijkt u Netflix"})
         table_description = props.Translatable({
             "en": "This table shows what titles you watched when, for how long, and on what device.", 
             "nl": "Klik op ‘Tabel tonen’ om voor elke keer dat u iets op Netflix heeft gekeken te zien welke serie of film dit was, wanneer u dit heeft gekeken, hoe lang u het heeft gekeken en op welk apparaat u het heeft gekeken."
         })
-        table = props.PropsUIPromptConsentFormTable("netflix_viewings", table_title, df, table_description)
+        table = props.PropsUIPromptConsentFormTable("netflix_viewings", table_title, df, table_description, [hours_logged_in, at_what_time])
         tables_to_render.append(table)
 
     return tables_to_render
