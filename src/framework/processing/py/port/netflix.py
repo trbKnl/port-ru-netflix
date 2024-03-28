@@ -157,11 +157,10 @@ def viewing_activity_to_df(netflix_zip: str, selected_user: str)  -> pd.DataFram
     Only keep the selected user
     """
 
-    columns_to_keep = ["Start Time","Duration","Title","Supplemental Video Type", "Device Type"]
+    columns_to_keep = ["Start Time","Duration","Title","Supplemental Video Type"]
     columns_to_rename =  {
         "Start Time": "Start tijd",
         "Title": "Titel",
-        "Device Type": "Apparaat",
         "Supplemental Video Type": "Aanvullend informatie",
         "Duration": "Aantal uur gekeken"
     }
