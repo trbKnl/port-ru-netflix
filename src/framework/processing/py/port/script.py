@@ -315,7 +315,6 @@ def extract_users(netflix_zip):
 
 def render_questionnaire():
     questions = [
-        props.PropsUIQuestionOpen(question=UNDERSTANDING, id=1),
         props.PropsUIQuestionMultipleChoice(question=INDENTIFY_CONSUMPTION, id=2, choices=IDENTIFY_CONSUMPTION_CHOICES),
         props.PropsUIQuestionMultipleChoice(question=ENJOYMENT, id=3, choices=ENJOYMENT_CHOICES),
         props.PropsUIQuestionOpen(question=ADDITIONAL_COMMENTS, id=4),
@@ -332,7 +331,6 @@ def render_questionnaire():
 
 def render_questionnaire_no_donation():
     questions = [
-        props.PropsUIQuestionOpen(question=UNDERSTANDING, id=1),
         props.PropsUIQuestionMultipleChoice(question=INDENTIFY_CONSUMPTION, id=2, choices=IDENTIFY_CONSUMPTION_CHOICES),
         props.PropsUIQuestionMultipleChoice(question=ENJOYMENT, id=3, choices=ENJOYMENT_CHOICES),
         props.PropsUIQuestionOpen(question=NO_DONATION_REASONS, id=5),
