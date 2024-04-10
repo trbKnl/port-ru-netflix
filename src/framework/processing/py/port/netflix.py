@@ -40,11 +40,6 @@ STATUS_CODES = [
 def validate_zip(zfile: Path) -> ValidateInput:
     """
     Validates the input of an Instagram zipfile
-
-    NOTE FOR KASPER:
-    This function sets a validation object generated with ValidateInput
-    This validation object can be read later on to infer possible problems with the zipfile
-    I dont like this design myself, but I also havent found any alternatives that are better
     """
 
     validate = ValidateInput(STATUS_CODES, DDP_CATEGORIES)
@@ -165,11 +160,13 @@ def viewing_activity_to_df(netflix_zip: str, selected_user: str)  -> pd.DataFram
     }
 
     df = netflix_to_df(netflix_zip, "ViewingActivity.csv", selected_user)
+    remove_values = ["TEASER_TRAILER", "HOOK", "TRAILER"]
 
     # Extraction logic here
     try:
         if not df.empty:
             df = df[columns_to_keep]
+            df = df[~df["Supplemental Video Type"].isin(remove_values)].reset_index(drop=True)
             df = df.rename(columns=columns_to_rename)
 
         df['Aantal uur gekeken'] = df['Aantal uur gekeken'].apply(time_string_to_hours)
