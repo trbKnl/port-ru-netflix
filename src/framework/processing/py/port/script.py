@@ -214,7 +214,11 @@ def create_consent_form(table_list: list[props.PropsUIPromptConsentFormTable]) -
     """
     Assembles all donated data in consent form to be displayed
     """
-    return props.PropsUIPromptConsentForm(table_list, meta_tables=[])
+    desc = props.Translatable({
+        "en": "Determine whether you want to share the data below. Review the data carefully and adjust if necessary. Only the data that is visualized will be shared. Your contribution will help the previously described research. Thank you in advance.",
+        "nl": "Bepaal of u de onderstaande gegevens wilt delen. Bekijk de gegevens zorgvuldig en pas zo nodig aan. Alleen de gegevens die zijn gevisualiseerd, worden gedeeld. Met uw bijdrage helpt u het eerder beschreven onderzoek. Alvast hartelijk dank.",
+    })
+    return props.PropsUIPromptConsentForm(table_list, description=desc, meta_tables=[])
 
 
 def return_empty_result_set():
@@ -298,7 +302,8 @@ def extract_netflix(netflix_zip: str, selected_user: str) -> list[props.PropsUIP
             "type": "area",
             "group": {
                 "column": "Start tijd",
-                "dateFormat": "month"
+                "dateFormat": "month",
+                "label": "Month"
             },
             "values": [{
                 "column": "Aantal uur gekeken",

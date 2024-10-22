@@ -170,6 +170,7 @@ def viewing_activity_to_df(netflix_zip: str, selected_user: str)  -> pd.DataFram
             df = df.rename(columns=columns_to_rename)
 
         df['Aantal uur gekeken'] = df['Aantal uur gekeken'].apply(time_string_to_hours)
+        df = df.sort_values(by='Start tijd', ascending=True).reset_index(drop=True)
     except Exception as e:
         logger.error("Data extraction error: %s", e)
         
