@@ -62,7 +62,7 @@ ADDITIONAL_COMMENTS = props.Translatable({
 #Not donate questions
 NO_DONATION_REASONS = props.Translatable({
     "en": "What is/are the reason(s) that you decided not to donate your data?",
-    "nl": "Wat is de reden dat u er voor gekozen hebt uw data niet te doneren?"
+    "nl": "Wat is de reden dat u er voor gekozen hebt uw data niet te delen?"
 })
 
 # Headers
@@ -359,7 +359,7 @@ def render_questionnaire():
         props.PropsUIQuestionOpen(question=ADDITIONAL_COMMENTS, id=4),
     ]
 
-    description = props.Translatable({"en": "Below you can find a couple of questions about the data donation process", "nl": "Hieronder vind u een paar vragen over het data donatie process"})
+    description = props.Translatable({"en": "Below you can find a couple of questions about the data donation process", "nl": "Hieronder vindt u een paar vragen over het proces van het data delen"})
     header = props.PropsUIHeader(props.Translatable({"en": "Questionnaire", "nl": "Vragenlijst"}))
     body = props.PropsUIPromptQuestionnaire(questions=questions, description=description)
     footer = props.PropsUIFooter()

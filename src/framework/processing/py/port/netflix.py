@@ -160,7 +160,7 @@ def viewing_activity_to_df(netflix_zip: str, selected_user: str)  -> pd.DataFram
     }
 
     df = netflix_to_df(netflix_zip, "ViewingActivity.csv", selected_user)
-    remove_values = ["TEASER_TRAILER", "HOOK", "TRAILER"]
+    remove_values = ["TEASER_TRAILER", "HOOK", "TRAILER", "CINEMAGRAPH"]
 
     # Extraction logic here
     try:
