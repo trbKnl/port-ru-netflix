@@ -36,13 +36,21 @@ UNDERSTANDING = props.Translatable({
     "nl": "Hoe zou u de gegevens omschrijven die u heeft gedeeld met onderzoekers van de Radboud Universiteit?"
 })
 
-INDENTIFY_CONSUMPTION = props.Translatable({"en": "In case you looked at the data presented on this page, did you recognise your Netflix watching patterns?", "nl": "Als u naar uw data gekeken hebt, in hoeverre herkent u uw eigen kijkgedrag?"})
+INDENTIFY_CONSUMPTION = props.Translatable({"en": "To what extent did you recognize your own viewing behavior?", "nl": "In hoeverre herkende u uw eigen kijkgedrag?"})
 IDENTIFY_CONSUMPTION_CHOICES = [
     props.Translatable({"en": "I recognized my Netflix watching patterns", "nl": "Ik herkende mijn Netflix kijkgedrag"}),
     props.Translatable({"en": "I recognized my Netflix watching patterns and patters of those I share my account with", "nl": "Ik herkende mijn eigen Netflix kijkgedrag en die van anderen met wie ik mijn account deel"}),
     props.Translatable({"en": "I recognized mostly the watching patterns of those I share my account with", "nl": "Ik herkende vooral het kijkgedrag van anderen met wie ik mijn account deel"}),
     props.Translatable({"en": "I did not look at my data ", "nl": "Ik heb niet naar mijn gegevens gekeken"}),
     props.Translatable({"en": "Other", "nl": "Anders"})
+]
+
+IDENTIFY_CONSUMPTION_CHOICES = [
+    props.Translatable({"en": "I recognized my Netflix watching behavior", "nl": "Ik herkende mijn Netflix kijkgedrag"}),
+    props.Translatable({"en": "I recognized my own Netflix viewing behavior and that of others I share my account with", "nl": "Ik herkende mijn eigen Netflix kijkgedrag en dat van anderen met wie ik mijn account deel"}),
+    props.Translatable({"en": "I mostly recognized the viewing behavior of others I share my account with", "nl": "Ik herkende vooral het kijkgedrag van anderen met wie ik mijn account deel"}),
+    props.Translatable({"en": "I did not look at my data", "nl": "Ik heb niet naar mijn gegevens gekeken"}),
+    props.Translatable({"en": "Other (please specify in the comments below)", "nl": "Anders (vul in bij opmerkingen hieronder)"})
 ]
 
 ENJOYMENT = props.Translatable({"en": "In case you looked at the data presented on this page, how interesting did you find looking at your data?", "nl": "Als u naar uw data hebt gekeken, hoe interessant vond u het om daar naar te kijken?"})
@@ -355,7 +363,6 @@ def extract_users(netflix_zip):
 def render_questionnaire():
     questions = [
         props.PropsUIQuestionMultipleChoice(question=INDENTIFY_CONSUMPTION, id=2, choices=IDENTIFY_CONSUMPTION_CHOICES),
-        props.PropsUIQuestionMultipleChoice(question=ENJOYMENT, id=3, choices=ENJOYMENT_CHOICES),
         props.PropsUIQuestionOpen(question=ADDITIONAL_COMMENTS, id=4),
     ]
 
@@ -371,7 +378,6 @@ def render_questionnaire():
 def render_questionnaire_no_donation():
     questions = [
         props.PropsUIQuestionMultipleChoice(question=INDENTIFY_CONSUMPTION, id=2, choices=IDENTIFY_CONSUMPTION_CHOICES),
-        props.PropsUIQuestionMultipleChoice(question=ENJOYMENT, id=3, choices=ENJOYMENT_CHOICES),
         props.PropsUIQuestionOpen(question=NO_DONATION_REASONS, id=5),
         props.PropsUIQuestionOpen(question=ADDITIONAL_COMMENTS, id=4),
     ]
